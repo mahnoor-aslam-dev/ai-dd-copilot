@@ -1,4 +1,4 @@
-const { createCase, getCasesByUser, getCaseById } = require('../models/caseModel');
+const { createCase, getCasesByUser, getCaseById, deleteCase } = require('../models/caseModel');
 
 async function newCase(req, res) {
   try {
@@ -37,4 +37,17 @@ async function getCase(req, res) {
   }
 }
 
-module.exports = { newCase, listCases, getCase };
+async function removeCase(req, res) {
+  try {
+    const deleted = await deleteCase(req.params.id, req.user.userId);
+    if (!deleted) {
+      return res.status(404).json({ error: 'Case nahi mila' });
+    }
+    res.json({ message: 'Case deleted' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+}
+
+module.exports = { newCase, listCases, getCase, removeCase };

@@ -16,4 +16,12 @@ async function getDocumentsByCase(caseId) {
   return result.rows;
 }
 
-module.exports = { createDocument, getDocumentsByCase };
+async function deleteDocument(documentId, caseId) {
+  const result = await pool.query(
+    'DELETE FROM documents WHERE id = $1 AND case_id = $2 RETURNING *',
+    [documentId, caseId]
+  );
+  return result.rows[0];
+}
+
+module.exports = { createDocument, getDocumentsByCase, deleteDocument };

@@ -2,9 +2,8 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const verifyToken = require('../middleware/authMiddleware');
-const { uploadDocument, listDocuments } = require('../controllers/documentController');
+const { uploadDocument, listDocuments, removeDocument } = require('../controllers/documentController');
 
-// Multer config — file kahan save hogi aur naam kaise milega
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/');
@@ -17,7 +16,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({
   storage,
-  limits: { fileSize: 10 * 1024 * 1024 }, // 10 MB limit
+  limits: { fileSize: 10 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
     const allowedTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
     if (allowedTypes.includes(file.mimetype)) {
@@ -30,5 +29,6 @@ const upload = multer({
 
 router.post('/:caseId/upload', verifyToken, upload.single('document'), uploadDocument);
 router.get('/:caseId', verifyToken, listDocuments);
+router.delete('/:caseId/:docId', verifyToken, removeDocument);
 
 module.exports = router;

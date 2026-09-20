@@ -24,4 +24,12 @@ async function getCaseById(caseId, userId) {
   return result.rows[0];
 }
 
-module.exports = { createCase, getCasesByUser, getCaseById };
+async function deleteCase(caseId, userId) {
+  const result = await pool.query(
+    'DELETE FROM cases WHERE id = $1 AND user_id = $2 RETURNING *',
+    [caseId, userId]
+  );
+  return result.rows[0];
+}
+
+module.exports = { createCase, getCasesByUser, getCaseById, deleteCase };

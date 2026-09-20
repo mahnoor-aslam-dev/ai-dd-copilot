@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+ /* @theme {
+   /* --color-ink: #120A0C;
+  --color-ink2: #1C1114;
+  --color-ink3: #241519;
+  --color-parchment: #F4EBDD;
+  --color-dim: #B9A99C;
+  --color-dim2: #8A7A6F;
+  --color-gold: #E8A93B;
+  --color-goldbright: #F4C15A;
+  --color-moss: #7A9B76;
+  --color-flag: #C4544A;  */ 
+
+  @theme {
+  --color-ink: #0B1638;
+  --color-ink2: #142452;
+  --color-ink3: #1C2F66;
+  --color-parchment: #EDF0F7;
+  --color-dim: #A9B8DE;
+  --color-dim2: #7186B8;
+  --color-gold: #3457E8;
+  --color-goldbright: #6FA8FF;
+  --color-moss: #7A9B76;
+  --color-flag: #C4544A;
+
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-sans: "IBM Plex Serif", Georgia, serif;
+  --font-mono: "DM Sans", sans-serif;
+  }
+
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-parchment);
+  font-family: var(--font-sans);
+  font-weight: 300; /* body text ab bohot light hai */
+}
+
+.font-display {
+  font-weight: 400;
+}
+
+.font-mono {
+  font-weight: 700; /* labels/tags ab bold mono — body ke light weight se sharp contrast */
+  letter-spacing: 0.08em;
+}
+
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; animation: rise .8s cubic-bezier(.16,1,.3,1) forwards; }
+.r1 { animation-delay: .05s } .r2 { animation-delay: .18s } .r3 { animation-delay: .31s }
+.r4 { animation-delay: .44s } .r5 { animation-delay: .57s } .r6 { animation-delay: .7s }
+
+@keyframes sealIn { 0% { opacity: 0; transform: scale(1.4) rotate(8deg); } 60% { opacity: 1; } 100% { opacity: 1; transform: scale(1) rotate(-6deg); } }
+.seal-in { animation: sealIn 1s cubic-bezier(.2,.8,.2,1) .5s both; }
+
+@keyframes glowPulse { 0%, 100% { opacity: .55; } 50% { opacity: .85; } }
+.glow-pulse { animation: glowPulse 3.4s ease-in-out infinite; }
