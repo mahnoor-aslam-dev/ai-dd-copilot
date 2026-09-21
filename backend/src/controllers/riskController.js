@@ -5,7 +5,7 @@ async function listFlags(req, res) {
   try {
     const { caseId } = req.params;
     const caseData = await getCaseById(caseId, req.user.userId);
-    if (!caseData) return res.status(404).json({ error: 'Case nahi mila' });
+    if (!caseData) return res.status(404).json({ error: 'Case not found' });
 
     const flags = await getFlagsByCase(caseId);
     res.json(flags);

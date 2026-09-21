@@ -16,11 +16,11 @@ async function uploadDocument(req, res) {
 
     const caseData = await getCaseById(caseId, req.user.userId);
     if (!caseData) {
-      return res.status(404).json({ error: 'Case nahi mila' });
+      return res.status(404).json({ error: 'Case not found' });
     }
 
     if (!req.file) {
-      return res.status(400).json({ error: 'Koi file upload nahi hui' });
+      return res.status(400).json({ error: 'No file uploaded.' });
     }
 
     const doc = await createDocument(
@@ -87,12 +87,12 @@ async function removeDocument(req, res) {
 
     const caseData = await getCaseById(caseId, req.user.userId);
     if (!caseData) {
-      return res.status(404).json({ error: 'Case nahi mila' });
+      return res.status(404).json({ error: 'Case not found' });
     }
 
     const deleted = await deleteDocument(docId, caseId);
     if (!deleted) {
-      return res.status(404).json({ error: 'Document nahi mila' });
+      return res.status(404).json({ error: 'Document not found' });
     }
 
     if (deleted.file_path && fs.existsSync(deleted.file_path)) {

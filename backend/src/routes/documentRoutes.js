@@ -22,7 +22,7 @@ const upload = multer({
     if (allowedTypes.includes(file.mimetype)) {
       cb(null, true);
     } else {
-      cb(new Error('Sirf PDF aur DOCX files allowed hain'));
+      cb(new Error('Only PDF and DOCX files allowed.'));
     }
   }
 });

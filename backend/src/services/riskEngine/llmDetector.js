@@ -3,15 +3,15 @@ const genAI = require('../../config/gemini');
 async function detectLLMRisks(chunks) {
   const sampleText = chunks.slice(0, 15).map(c => c.chunk_text).join('\n\n');
 
-  const prompt = `Aap ek due diligence risk analyst hain. Neeche diya gaya document text parhein aur koi bhi unusual, risky, ya red-flag-worthy clauses identify karein jo predefined rules mein na hon (jaise: unusual payment terms, one-sided penalty clauses, vague obligations, missing key terms).
+  const prompt = `You are a due diligence risk analyst. Read the document text below and identify any unusual, risky, or red-flag-worthy clauses that don't match predefined rules (e.g. unusual payment terms, one-sided penalty clauses, vague obligations, missing key terms).
 
 Document:
 ${sampleText}
 
-Sirf ek JSON array return karein, is format mein, aur kuch nahi:
-[{"severity": "low|moderate|high", "description": "chhota sa risk description"}]
+Return only a JSON array, in this format, nothing else:
+[{"severity": "low|moderate|high", "description": "brief risk description"}]
 
-Agar koi risk na mile, khali array return karein: []`;
+If no risks are found, return an empty array: []`;
 
   try {
     const model = genAI.getGenerativeModel({ model: 'gemini-flash-latest' });

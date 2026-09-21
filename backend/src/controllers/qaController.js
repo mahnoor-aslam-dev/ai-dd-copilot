@@ -8,18 +8,18 @@ async function askQuestion(req, res) {
     const { question } = req.body;
 
     if (!question) {
-      return res.status(400).json({ error: 'Sawal zaroori hai' });
+      return res.status(400).json({ error: 'Question is required' });
     }
 
     const caseData = await getCaseById(caseId, req.user.userId);
     if (!caseData) {
-      return res.status(404).json({ error: 'Case nahi mila' });
+      return res.status(404).json({ error: 'Case not found' });
     }
 
     const relevantChunks = await retrieveRelevantChunks(question, caseId);
 
     if (relevantChunks.length === 0) {
-      return res.json({ answer: 'Is case mein koi processed documents nahi hain.', sources: [] });
+      return res.json({ answer: 'This case has no processed documents yet.', sources: [] });
     }
 
     const answer = await generateAnswer(question, relevantChunks);
