@@ -1,10 +1,9 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
 });
 
-// Har request ke saath automatically token attach karo (agar available ho)
 apiClient.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) {
