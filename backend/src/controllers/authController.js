@@ -8,16 +8,16 @@ async function signup(req, res) {
     const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
-      return res.status(400).json({ error: 'Name, email, aur password zaroori hain' });
+      return res.status(400).json({ error: 'Name, Email and Password are mandatory.' });
     }
 
     const existingUser = await findUserByEmail(email);
     if (existingUser) {
-      return res.status(400).json({ error: 'Ye email already registered hai' });
+      return res.status(400).json({ error: 'This email is already registered' });
     }
 
     const user = await createUser(name, email, password);
-    res.status(201).json({ message: 'User successfully bana', user });
+    res.status(201).json({ message: 'User successfully created', user });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Server error' });
@@ -30,17 +30,17 @@ async function login(req, res) {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res.status(400).json({ error: 'Email aur password dono zaroori hain' });
+      return res.status(400).json({ error: 'Enter email and password.' });
     }
 
     const user = await findUserByEmail(email);
     if (!user) {
-      return res.status(400).json({ error: 'Galat email ya password' });
+      return res.status(400).json({ error: 'Incorrect email or password.' });
     }
 
     const isMatch = await bcrypt.compare(password, user.password_hash);
     if (!isMatch) {
-      return res.status(400).json({ error: 'Galat email ya password' });
+      return res.status(400).json({ error: 'Incorrect email or password.' });
     }
 
     const token = jwt.sign(
