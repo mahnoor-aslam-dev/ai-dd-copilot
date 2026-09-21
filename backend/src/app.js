@@ -14,11 +14,13 @@ const analyticsRoutes = require('./routes/analyticsRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware — SABSE PEHLE, kisi bhi route se pehle
-app.use(cors());
+// Middleware — sabse pehle, kisi bhi route se pehle
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://ai-dd-copilot.vercel.app/']
+}));
 app.use(express.json());
 
-// Routes — ab sab middleware ke BAAD hain
+// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/cases', caseRoutes);
 app.use('/api/documents', documentRoutes);
