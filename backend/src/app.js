@@ -15,8 +15,16 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware — sabse pehle, kisi bhi route se pehle
+const allowedOrigins = ['http://localhost:5173'];
+
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://ai-dd-copilot.vercel.app']
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true); // Postman jaisi tools ke liye (jinka koi origin nahi hota)
+    if (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
+      return callback(null, true);
+    }
+    callback(new Error('Not allowed by CORS'));
+  }
 }));
 app.use(express.json());
 
