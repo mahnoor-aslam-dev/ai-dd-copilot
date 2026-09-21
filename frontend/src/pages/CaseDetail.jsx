@@ -198,7 +198,7 @@ export default function CaseDetail() {
       <div className="mt-6 grid gap-5 lg:grid-cols-[240px_1fr]">
         {/* Documents */}
         <div>
-          <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-dim2">documents ({readyDocsCount}/{documents.length})</p>
+          <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-dim2">Documents ({readyDocsCount}/{documents.length})</p>
           <div className="space-y-2">
             {documents.map((doc) => {
               const s = statusLabel[doc.upload_status] || statusLabel.uploaded;
@@ -237,13 +237,13 @@ export default function CaseDetail() {
               onClick={() => setActiveTab('flags')}
               className={`rounded-full px-4 py-1.5 font-mono text-[11.5px] transition-colors ${activeTab === 'flags' ? 'bg-gold text-ink' : 'text-dim hover:text-parchment'}`}
             >
-              risk flags {flags.length > 0 && <span className="ml-1 opacity-70">{flags.length}</span>}
+              Risk Flags {flags.length > 0 && <span className="ml-1 opacity-70">{flags.length}</span>}
             </button>
             <button
               onClick={() => setActiveTab('chat')}
               className={`rounded-full px-4 py-1.5 font-mono text-[11.5px] transition-colors ${activeTab === 'chat' ? 'bg-gold text-ink' : 'text-dim hover:text-parchment'}`}
             >
-              ask anything
+              Ask Anything
             </button>
           </div>
 
@@ -258,7 +258,7 @@ export default function CaseDetail() {
                   {flags.map((flag) => (
                     <div key={flag.id} className={`rounded-lg border-l-2 py-2.5 pl-4 pr-4 ${severityBorder[flag.severity] || severityBorder.low}`}>
                       <div className="flex items-center justify-between gap-3">
-                        <span className="font-mono text-[10px] uppercase tracking-wide text-dim">{flag.severity} risk</span>
+                        <span className="font-mono text-[10px] uppercase tracking-wide text-dim">{flag.severity} Risk</span>
                         <span className="truncate font-mono text-[10px] text-dim2">{flag.filename}</span>
                       </div>
                       <p className="mt-1.5 text-[13.5px] text-parchment/90">{flag.description}</p>
@@ -284,7 +284,7 @@ export default function CaseDetail() {
                         </>
                       ) : (
                         <div className={`mt-3 rounded-lg border p-4 ${m.error ? 'border-flag/30 bg-flag/[0.06]' : 'border-white/[0.06] bg-ink/50'}`}>
-                          <p className={`mb-2 font-mono text-[10px] uppercase tracking-wide ${m.error ? 'text-flag' : 'text-moss'}`}>response</p>
+                          <p className={`mb-2 font-mono text-[10px] uppercase tracking-wide ${m.error ? 'text-flag' : 'text-moss'}`}>Response</p>
                           <p className="whitespace-pre-wrap text-[13.5px] leading-relaxed text-parchment/90">{m.text}</p>
                           {m.sources?.length > 0 && (
                             <div className="mt-3 flex flex-wrap gap-1.5 border-t border-white/[0.06] pt-3">
