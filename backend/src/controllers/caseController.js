@@ -4,7 +4,7 @@ async function newCase(req, res) {
   try {
     const { title, description } = req.body;
     if (!title) {
-      return res.status(400).json({ error: 'Title zaroori hai' });
+      return res.status(400).json({ error: 'Enter title' });
     }
     const caseData = await createCase(req.user.userId, title, description);
     res.status(201).json(caseData);
@@ -28,7 +28,7 @@ async function getCase(req, res) {
   try {
     const caseData = await getCaseById(req.params.id, req.user.userId);
     if (!caseData) {
-      return res.status(404).json({ error: 'Case nahi mila' });
+      return res.status(404).json({ error: 'Case not found' });
     }
     res.json(caseData);
   } catch (err) {
