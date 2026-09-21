@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware — sabse pehle, kisi bhi route se pehle
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://ai-dd-copilot.vercel.app/']
+  origin: ['http://localhost:5173', 'https://ai-dd-copilot.vercel.app']
 }));
 app.use(express.json());
 
