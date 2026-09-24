@@ -1,16 +1,5 @@
-@import "tailwindcss";
+/* @import "tailwindcss";
 
- /* @theme {
-   /* --color-ink: #120A0C;
-  --color-ink2: #1C1114;
-  --color-ink3: #241519;
-  --color-parchment: #F4EBDD;
-  --color-dim: #B9A99C;
-  --color-dim2: #8A7A6F;
-  --color-gold: #E8A93B;
-  --color-goldbright: #F4C15A;
-  --color-moss: #7A9B76;
-  --color-flag: #C4544A;  */ 
 
   @theme {
   --color-ink: #0B1638;
@@ -34,7 +23,7 @@ body {
   background-color: var(--color-ink);
   color: var(--color-parchment);
   font-family: var(--font-sans);
-  font-weight: 300; /* body text ab bohot light hai */
+  font-weight: 300; 
 }
 
 .font-display {
@@ -42,7 +31,7 @@ body {
 }
 
 .font-mono {
-  font-weight: 700; /* labels/tags ab bold mono — body ke light weight se sharp contrast */
+  font-weight: 700; 
   letter-spacing: 0.08em;
 }
 
@@ -59,4 +48,60 @@ body {
 .seal-in { animation: sealIn 1s cubic-bezier(.2,.8,.2,1) .5s both; }
 
 @keyframes glowPulse { 0%, 100% { opacity: .55; } 50% { opacity: .85; } }
-.glow-pulse { animation: glowPulse 3.4s ease-in-out infinite; }
+.glow-pulse { animation: glowPulse 3.4s ease-in-out infinite; } */
+
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0A0A0C;
+  --color-ink2: #131316;
+  --color-ink3: #1A1A1E;
+  --color-parchment: #F5F5F5;
+  --color-dim: #9CA3AF;
+  --color-dim2: #6B7280;
+  --color-gold: #FB923C;
+  --color-goldbright: #22D3EE;
+  --color-moss: #4ADE80;
+  --color-flag: #EF4444;
+
+  --font-display: "Unbounded", sans-serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "Plus Jakarta Sans", sans-serif;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-parchment);
+  font-family: var(--font-sans);
+  font-weight: 300;
+}
+
+.font-display { font-weight: 800; }
+.font-mono { font-weight: 600; letter-spacing: 0.08em; }
+
+.grad-text {
+  background: linear-gradient(90deg, var(--color-goldbright), var(--color-gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.grid-fade {
+  background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 75% 55% at 50% 0%, black 25%, transparent 70%);
+}
+
+@keyframes rise { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+.reveal { opacity:0; animation: rise .9s cubic-bezier(.16,1,.3,1) forwards; }
+.r1{animation-delay:.05s} .r2{animation-delay:.2s} .r3{animation-delay:.35s} .r4{animation-delay:.5s} .r5{animation-delay:.65s} .r6{animation-delay:.8s}
+
+@keyframes glowMove { 0%,100% { transform: translate(-10%,-10%) scale(1); } 50% { transform: translate(10%,5%) scale(1.15); } }
+.glow1 { animation: glowMove 16s ease-in-out infinite; }
+.glow2 { animation: glowMove 20s ease-in-out infinite reverse; }
+
+@keyframes sealIn { 0%{opacity:0;transform:scale(1.4) rotate(8deg);} 60%{opacity:1;} 100%{opacity:1;transform:scale(1) rotate(-6deg);} }
+.seal-in { animation: sealIn 1s cubic-bezier(.2,.8,.2,1) .5s both; }
+
+@keyframes glowPulse { 0%,100%{opacity:.55;} 50%{opacity:.85;} }
+.glow-pulse{animation: glowPulse 3.4s ease-in-out infinite;}
