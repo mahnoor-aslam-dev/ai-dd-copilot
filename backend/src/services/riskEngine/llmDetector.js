@@ -8,8 +8,10 @@ async function detectLLMRisks(chunks) {
 Document:
 ${sampleText}
 
+Write each description in plain, simple English that a non-lawyer can easily understand. Avoid legal jargon. Keep each description to one or two short sentences.
+
 Return only a JSON array, in this format, nothing else:
-[{"severity": "low|moderate|high", "description": "brief risk description"}]
+[{"severity": "low|moderate|high", "description": "brief risk description in simple English"}]
 
 If no risks are found, return an empty array: []`;
 
