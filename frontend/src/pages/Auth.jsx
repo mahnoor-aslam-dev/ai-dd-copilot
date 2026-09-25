@@ -38,7 +38,7 @@ export default function Auth() {
       } else {
         const res = await login(email, password);
         loginUser(res.data.user, res.data.token);
-        navigate('/cases');
+        navigate('/dashboard');
       }
     } catch (err) {
       setError(err.response?.data?.error || 'Something went wrong. Please try again.');
