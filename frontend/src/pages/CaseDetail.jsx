@@ -406,7 +406,7 @@ export default function CaseDetail() {
                 onChange={(e) => setQuestion(e.target.value)}
                 disabled={readyDocsCount === 0}
                 placeholder={readyDocsCount === 0 ? 'Waiting for a document to finish processing…' : 'Ask anything about this case…'}
-                className="w-full bg-transparent text-[13px] text-parchment placeholder:text-dim2 disabled:cursor-not-allowed"
+                className="w-full bg-transparent text-[13px] text-parchment placeholder:text-dim2 outline-none focus:outline-none disabled:cursor-not-allowed"
               />
               <button
                 type="submit"
@@ -423,4 +423,4 @@ export default function CaseDetail() {
       </section>
     </DashboardLayout>
   );
-}
+} 
